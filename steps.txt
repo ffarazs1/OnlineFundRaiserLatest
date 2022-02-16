@@ -20,3 +20,7 @@
 16) install semantic ui-->npm install semantic-ui-react semantic-ui-css
 17) create static pages first
 18) add server file
+
+For environment variables:
+19) ext install mikestead.dotenv
+20) npm install dotenv <--not necessary with next

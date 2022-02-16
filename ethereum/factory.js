@@ -5,7 +5,7 @@ import CampaignFactory from "./build/CampaignFactory.json";
 //factory is added just to directly use deployed contracts check page 14  of docs
 const instance = new web3.eth.Contract(
   CampaignFactory.abi,
-  "0x8A498AE8A70EB4206d4cce38EF2ccA9324290ca7"
+  process.env.ADDRESS
 );
 
 export default instance;

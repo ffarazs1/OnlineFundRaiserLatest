@@ -24,3 +24,38 @@
 For environment variables:
 19) ext install mikestead.dotenv
 20) npm install dotenv <--not necessary with next
+21) check temp.js
+
+
+
+
+# 1) first is compile.js here we have to update the contract file as well as output that we need in build ---> compile it --> node compile.js  see video 145 and 146
+# 2) create your test file and update package.json to mocha
+# 3) test file --> npm run test
+# 4) change deploy.js to change mnemonic and network check video 157
+# 5) set Next.js 
+# 6) web3 is only for provider, either from metamask or infura
+# 7) factory.js and campaign.js (if you want to change name of contract). This is added just to directly use deployed contracts (check 164-168 video), web3 provider requires interface of the contracts thats why we are using these, Now we can easily use these contracts
+
+#THINGS TO LEARN
+# getInitialProps 
+enables server-side rendering in a page and allows you to do initial data population, it means sending the page with the data already populated from the server. This is especially useful for SEO.
+
+#semantic ui react
+https://react.semantic-ui.com/views/advertisement/
+
+# check components folder
+# ##index is calling Layout is calling Header, updaate header for navigation bar
+
+
+
+#METHODS:
+#1) Retrieve data
+import factory from "../ethereum/factory";
+const campaigns = await factory.methods.getDeployedCampaigns().call();
+
+check getInitialProps
+
+use it in rendering: const items = this.props.campaigns 
+
+#2) Add data

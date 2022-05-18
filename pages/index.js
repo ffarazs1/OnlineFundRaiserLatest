@@ -5,11 +5,14 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 
 class CampaignIndex extends Component {
+  // only in next.js, not react
+  // check document
+  // static method for class method
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
-
     return { campaigns };
   }
+
   renderCampaigns() {
     const items = this.props.campaigns.map((address) => {
       return {
@@ -28,7 +31,7 @@ class CampaignIndex extends Component {
         <div>
           <h3>Open Campaigns</h3>
           <Link href="/campaigns/new">
-          
+          {/* primary only means primary={true} */}
           <Button
             floated="right"
             content="Create Campaign"

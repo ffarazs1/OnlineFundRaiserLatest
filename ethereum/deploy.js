@@ -7,6 +7,8 @@ const provider = new HDWalletProvider(
   // remember to change this to your own phrase!
   "https://ropsten.infura.io/v3/e86e98a8613749838a1cc160ec5cbb72"
   // remember to change this to your own endpoint!
+  // "memory swear quit grain sketch armor jewel delay uncover lottery battle dragon",
+  // "HTTP://127.0.0.1:7545"
 );
 
 const web3 = new Web3(provider);
@@ -24,7 +26,7 @@ const deploy = async () => {
       console.log('caught :', error);
     });
 
-  console.log('Contract deployed to', result);
+  console.log('Contract deployed to', result.options.address);
   provider.engine.stop();
 };
 deploy();

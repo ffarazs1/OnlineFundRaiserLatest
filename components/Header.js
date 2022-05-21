@@ -3,7 +3,9 @@ import { Menu } from "semantic-ui-react";
 import Link from "next/link";
 
 const Header = () => {
+  //use https://react.semantic-ui.com/collections/menu/#types-secondary
   return (
+    //for style use double curly braces
     <Menu style={{ marginTop: "10px" }}>
       <Link href="/">
         <a className="item">CrowdCoin</a>

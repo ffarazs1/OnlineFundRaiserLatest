@@ -36,7 +36,7 @@ For environment variables:
 # 5) set Next.js 
 # 6) web3 is only for provider, either from metamask or infura
 # 7) factory.js and campaign.js (if you want to change name of contract). This is added just to directly use deployed contracts (check 164-168 video), web3 provider requires interface of the contracts thats why we are using these, Now we can easily use these contracts
-
+# 8) need next-routes, check video 192, this is used for dynamic routing
 #THINGS TO LEARN
 # getInitialProps 
 enables server-side rendering in a page and allows you to do initial data population, it means sending the page with the data already populated from the server. This is especially useful for SEO.
@@ -54,8 +54,61 @@ https://react.semantic-ui.com/views/advertisement/
 import factory from "../ethereum/factory";
 const campaigns = await factory.methods.getDeployedCampaigns().call();
 
-check getInitialProps
+check getInitialProps in index.js
 
 use it in rendering: const items = this.props.campaigns 
 
-#2) Add data
+const campaign = Campaign(props.query.address);
+
+    const summary = await campaign.methods.getSummary().call();
+
+    return {
+      address: props.query.address,
+      minimumContribution: summary[0],
+      balance: summary[1],
+      requestsCount: summary[2],
+      approversCount: summary[3],
+      manager: summary[4],
+    };
+
+
+#check page 26 of docs, we are calling again and again as solidity cant return 
+    #array of structs
+    const requests = await Promise.all(
+      Array(parseInt(requestCount))
+        .fill()#return arrays with indexes
+        .map((element, index) => {
+          return campaign.methods.requests(index).call();
+        })
+    );
+
+#2) Add data, check new.js
+ onSubmit = async (event) => {
+    event.preventDefault();
+    this.setState({ loading: true, errorMessage: "" });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .createCampaign(this.state.minimumContribution)
+        .send({
+          from: accounts[0],
+        });
+        Router.push("/");
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
+    this.setState({ loading: false });
+  };
+
+# 3) take input from semantic ui
+<Input
+              label="wei"
+              labelPosition="right"
+              value={this.state.minimumContribution}
+              onChange={(event) =>
+                this.setState({ minimumContribution: event.target.value })
+              }
+
+
+#row and Column can be set using grid and column

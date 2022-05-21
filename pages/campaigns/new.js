@@ -34,6 +34,7 @@ class CampaignNew extends Component {
     return (
       <Layout>
         <h3>Create Campaign</h3>
+        {/* if error is not set nothing will be done */}
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
             <label>Minimum Contribution</label>
